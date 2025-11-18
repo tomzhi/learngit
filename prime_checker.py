@@ -57,6 +57,38 @@ def get_all_factors(n):
     return sorted(factors)
 
 
+def get_prime_factors(n):
+    """
+    获取一个数的所有质因数（素因数）
+
+    参数:
+        n: 待分解的正整数
+
+    返回:
+        质因数列表（按出现顺序，包含重复）
+    """
+    prime_factors = []
+
+    # 处理因数2
+    while n % 2 == 0:
+        prime_factors.append(2)
+        n = n // 2
+
+    # 处理奇数因数
+    i = 3
+    while i * i <= n:
+        while n % i == 0:
+            prime_factors.append(i)
+            n = n // i
+        i += 2
+
+    # 如果n大于1，说明n本身是质数
+    if n > 1:
+        prime_factors.append(n)
+
+    return prime_factors
+
+
 def main():
     """
     主程序
@@ -104,11 +136,11 @@ def main():
                 print("YES，这是个质数")
             else:
                 print("NO，这不是质数")
-                print("该数的所有因数为：")
-                factors = get_all_factors(number)
+                print("该数的所有质因数为：")
+                prime_factors = get_prime_factors(number)
 
-                # 格式化输出因数
-                print(", ".join(map(str, factors)))
+                # 格式化输出质因数
+                print(" × ".join(map(str, prime_factors)))
 
             print("\n" + "-" * 50 + "\n")
 

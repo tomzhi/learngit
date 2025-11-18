@@ -4,7 +4,7 @@
 测试质数判断程序的核心功能
 """
 
-from prime_checker import is_prime, get_all_factors
+from prime_checker import is_prime, get_all_factors, get_prime_factors
 
 
 def test_is_prime():
@@ -51,6 +51,29 @@ def test_get_all_factors():
     print()
 
 
+def test_get_prime_factors():
+    """测试质因数获取功能"""
+    print("测试质因数获取功能:")
+    print("-" * 40)
+
+    test_cases = [
+        (12, [2, 2, 3]),
+        (20, [2, 2, 5]),
+        (36, [2, 2, 3, 3]),
+        (100, [2, 2, 5, 5]),
+        (17, [17]),
+        (60, [2, 2, 3, 5]),
+    ]
+
+    for num, expected in test_cases:
+        result = get_prime_factors(num)
+        status = "✓" if result == expected else "✗"
+        factorization = " × ".join(map(str, result))
+        print(f"{status} {num} = {factorization}")
+
+    print()
+
+
 def demo_output():
     """演示程序输出"""
     print("演示程序输出:")
@@ -66,24 +89,25 @@ def demo_output():
     print("测试案例2: 输入 12（合数）")
     if not is_prime(12):
         print("NO，这不是质数")
-        print("该数的所有因数为：")
-        factors = get_all_factors(12)
-        print(", ".join(map(str, factors)))
+        print("该数的所有质因数为：")
+        prime_factors = get_prime_factors(12)
+        print(" × ".join(map(str, prime_factors)))
     print()
 
     # 测试较大的合数
     print("测试案例3: 输入 100（合数）")
     if not is_prime(100):
         print("NO，这不是质数")
-        print("该数的所有因数为：")
-        factors = get_all_factors(100)
-        print(", ".join(map(str, factors)))
+        print("该数的所有质因数为：")
+        prime_factors = get_prime_factors(100)
+        print(" × ".join(map(str, prime_factors)))
     print()
 
 
 if __name__ == "__main__":
     test_is_prime()
     test_get_all_factors()
+    test_get_prime_factors()
     demo_output()
     print("=" * 50)
     print("所有测试完成！")
