@@ -139,8 +139,9 @@ def main():
                 print("该数的所有质因数为：")
                 prime_factors = get_prime_factors(number)
 
-                # 格式化输出质因数
-                print(" × ".join(map(str, prime_factors)))
+                # 获取唯一的质因数并用逗号分隔
+                unique_factors = sorted(set(prime_factors))
+                print(",".join(map(str, unique_factors)))
 
             print("\n" + "-" * 50 + "\n")
 
