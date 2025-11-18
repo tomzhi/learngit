@@ -132,7 +132,10 @@ def main():
             # 判断是否为质数
             print(f"\n正在判断 {number:,} ...\n")
 
-            if is_prime(number):
+            # 特殊处理：数字1既不是质数也不是合数
+            if number == 1:
+                print("正整数1既不是质数也不是合数")
+            elif is_prime(number):
                 print("YES，这是个质数")
             else:
                 print("NO，这不是质数")
